@@ -1,0 +1,18 @@
+<!DOCTYPE HTML>
+<html>
+  <style>
+  canvas {
+    border: 3px #CCC solid;
+  }
+  </style>
+
+  <body>
+    <div id="container">
+      <canvas id="myCanvas" width="480" height="270"></canvas>
+    </div>
+    <button id="newMoney">New Money</button>
+    <script src="MoneyScroll.js"></script>
+    <!--<img src="TestMoney.jpg" alt="Image Not Found" height="100">-->
+
+  </body>
+</html>
