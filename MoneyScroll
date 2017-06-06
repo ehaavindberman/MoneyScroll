@@ -5,6 +5,9 @@
     border: 3px #CCC solid;
   }
   </style>
+  <title>Money Scroll</title>
+  <h1>Money Scroll - try it yourself!</h1>
+  <hr>
 
   <body>
     <div id="container">
@@ -13,9 +16,26 @@
     <button id="newMoney">New Money</button>
     <button id="update">Update Tracker</button>
     <p id="moneyMade"></p>
-    Salary: <input value="90,000" type="text" id="salary"/>
+    Salary:
+    <select id="salaryCurrency">
+      <option value="usd">$</option>
+      <option value="euro">€</option>
+      <option value="cad">Can$</option>
+    </select>
+    <input value="90,000" type="text" id="salary"/>
+    per
+    <select id = "salaryTime">
+      <option value="year">Year</option>
+      <option value="quarter">Quarter</option>
+      <option value="month">Month</option>
+      <option value="day">Day</option>
+      <option value="hour">Hour</option>
+    </select>
     <br>
-    Currency:
+    Taxes: <input value="0" type="text" id="tax"/>%
+
+    <br>
+    Scrolling currency:
     <select id="currency">
       <option selected="selected" value="cent">1 US Cents</option>
       <option value="5c_usd">5 US Cents</option>
@@ -35,5 +55,13 @@
     <script src="MoneyScroll.js"></script>
     <!--<img src="TestMoney.jpg" alt="Image Not Found" height="100">-->
 
+
+
+    <footer>
+      <p>
+        Author: Eric Haavind-Berman<br>
+        Contact: ehaavindberman@gmail.com
+      </p>
   </body>
 </html>
+
