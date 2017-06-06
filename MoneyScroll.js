@@ -1,11 +1,10 @@
 /*Javascript*/
 
-
+var velocity;
 var interval;
 var leftpos = [];
 var moneyPictures = [];
 var time = [];
-var velocity = 1;
 
 var canvas = document.getElementById('myCanvas');
 var context = canvas.getContext('2d');
@@ -114,8 +113,21 @@ function updateVals() {
     break;
   }
 
+  var tax = document.getElementById("tax").value;
+
+  var salaryTime = document.getElementById("salaryTime").value;
+  switch (salaryTime) {
+    case "year":
+      var divideExt = 1 / 52 /40 / 60 / 60 / 1000;
+    break;
+
+    case "hour":
+      var divideExt = 1 / 60 / 60 / 1000;
+    break;
+  }
+
   // calculate speed
-  salaryPerMili = 1 / (salary*dollars / 52 /40 / 60 / 60 / 1000);
+  salaryPerMili = 1 / (salary*dollars*divideExt*((100-tax)/100));
 
   if (salaryPerMili < 500) {
     velocity = 1.84;
@@ -124,14 +136,29 @@ function updateVals() {
     velocity = .92;
   }
 
-  try {
-    clearInterval(salaryLoop);
+  // make sure the salary isn't too much to wreck the animation
+  if (salaryPerMili > 5) {
+    try {
+      clearInterval(salaryLoop);
+    }
+    finally{
+      salaryLoop = setInterval(addNew,salaryPerMili);
+    }
   }
-  finally{
-    salaryLoop = setInterval(addNew,salaryPerMili);
+  else {
+    try {
+      clearInterval(salaryLoop);
+      clearInterval(interval);
+    }
+    finally {
+      context.clearRect(0,0,canvas.width,canvas.height);
+      context.fillStyle = "blue";
+      context.font = "bold 16px Arial";
+      context.textAlign="center";
+      context.fillText("You make too much money, go away"
+        , (canvas.width / 2), (canvas.height / 2));
+    }
   }
-
-  console.log(salaryPerMili);
 }
 
 function addNew() {
@@ -174,6 +201,3 @@ function drawAllMoneys() {
     leftpos[i] += velocity;
   }
 }
-
-
-// use a queue as the data structure
