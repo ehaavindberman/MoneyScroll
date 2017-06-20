@@ -1,17 +1,34 @@
 <!DOCTYPE HTML>
 <html>
-  <style>
-  canvas {
-    border: 3px #CCC solid;
-  }
-  </style>
+  <head>
+    <link rel="stylesheet" type="text/css" href="MoneyScroll.css">
+  </head>
+
   <title>Money Scroll</title>
   <h1>Money Scroll - try it yourself!</h1>
   <hr>
   <br>
+
+  <div class="currencySelector"> <!--https://currencysystem.com/codes/-->
+    <input type="radio" name="currency" id="usd" value="usd" checked>
+    <label for="usd">US dollar</label>
+
+    <input type="radio" name="currency" id="eur" value="eur">
+    <label for="eur">Euro</label>
+
+    <input type="radio" name="currency" id="nok" value="nok">
+    <label for="nok">Norwegian Krone</label>
+
+    <input type="radio" name="currency" id="try" value="try">
+    <label for="try">Turkish Lira</label>
+
+    <input type="radio" name="currency" id="kes" value="kes">
+    <label for="kes">Kenyan Shilling</label>
+  </div>
+
   <body>
     <div id="container">
-      <canvas id="myCanvas" width="480" height="270"></canvas>
+      <canvas class="bankCanvas" id="scrollerCanvas" width="480" height="270"></canvas>
     </div>
     <button id="newMoney">New Money</button>
     <button id="update">Update Tracker</button>
@@ -23,8 +40,8 @@
       <option value="euro">€</option>
       <option value="cad">Can$</option>
     </select>
-  -->$
-    <input value="75,000" type="text" id="salary"/>
+    -->$
+    <input value="56,516" type="text" id="salary"/>
     per
     <select id = "salaryTime">
       <option selected="selected" value="year">Year</option>
@@ -49,6 +66,30 @@
 
 
 
+    Change background:
+    <div class="bgSelector"> <!--https://currencysystem.com/codes/-->
+      <input type="radio"
+        name="bgsel"
+        id="bank"
+        value="bankCanvas"
+        onclick="updateBackground();"
+        checked>
+      <label for="bank">Bank</label>
+
+      <input type="radio"
+        name="bgsel"
+        id="wood"
+        value="woodCanvas"
+        onclick="updateBackground();">
+      <label for="wood">Wood</label>
+
+      <input type="radio"
+        name="bgsel"
+        id="white"
+        value="whiteCanvas"
+        onclick="updateBackground();">
+      <label for="white">White</label>
+    </div>
 
 
     <script src="MoneyScroll.js"></script>
@@ -57,10 +98,10 @@
 
 
     <footer>
+      <hr>
       <p>
         Author: Eric Haavind-Berman<br>
         Contact: ehaavindberman@gmail.com
       </p>
   </body>
 </html>
-
