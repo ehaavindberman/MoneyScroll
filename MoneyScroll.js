@@ -6,7 +6,7 @@ var leftpos = [];
 var moneyPictures = [];
 var time = [];
 
-var canvas = document.getElementById('myCanvas');
+var canvas = document.getElementById('scrollerCanvas');
 var context = canvas.getContext('2d');
 var moneyCounter = 0;
 var moneyMadeDisp = "Money Made: $0.00";
@@ -152,11 +152,14 @@ function updateVals() {
     }
     finally {
       context.clearRect(0,0,canvas.width,canvas.height);
-      context.fillStyle = "blue";
-      context.font = "bold 16px Arial";
+      context.fillStyle = "#15ff00";
+      context.font = "bold 25px Arial";
       context.textAlign="center";
       context.fillText("You make too much money, go away"
-        , (canvas.width / 2), (canvas.height / 2));
+        , (canvas.width / 2), (canvas.height / 2)-10);
+      context.fillText("(or use a more valuable currency)"
+        , (canvas.width / 2), (canvas.height / 2)+10);
+
     }
   }
 }
@@ -201,3 +204,16 @@ function drawAllMoneys() {
     leftpos[i] += velocity;
   }
 }
+
+
+
+
+
+
+function updateBackground() {
+  var bg_val = document.querySelector('input[name = "bgsel"]:checked').value;
+  document.getElementById("scrollerCanvas").className = bg_val;
+}
+
+
+// use a queue as the data structure
