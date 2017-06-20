@@ -1,0 +1,76 @@
+/* BACKGROUND IMAGE CLASSES */
+.bankCanvas {
+  border: 3px #CCC solid;
+  background:url(bank.png);
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+
+.woodCanvas {
+  border: 3px #CCC solid;
+  background:url(wood.png);
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+
+.whiteCanvas {
+  border: 3px #CCC solid;
+  background: white;
+}
+
+
+/* OTHER STUFF */
+body {
+  background-color: lightblue;
+  padding: 0px 20px 0px 20px;
+  margin: auto;
+  text-align: center;
+}
+
+h1 {
+  color: navy;
+  margin-left: 20px;
+}
+
+footer {
+  text-align: left;
+}
+
+/* take out circle buttons */
+.currencySelector input[type="radio"] {
+  display: none;
+}
+
+/* format labels */
+.currencySelector label {
+  display: inline-block;
+  background-color: #4d79ff;
+  padding: 4px 4px;
+  font-size: 16px;
+  color: white;
+}
+
+/* format checked background */
+.currencySelector input[type="radio"]:checked+label {
+  background-color: #1a53ff;
+}
+
+
+/* take out circle buttons */
+.bgSelector input[type="radio"] {
+  display: none;
+}
+
+/* format labels */
+.bgSelector label {
+  display: inline-block;
+  background-color: #4d79ff;
+  padding: 4px 4px;
+  font-size: 16px;
+  color: white;
+}
+
+/* format checked background */
+.bgSelector input[type="radio"]:checked+label {
+  background-color: #1a53ff;
+}
