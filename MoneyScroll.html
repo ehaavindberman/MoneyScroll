@@ -9,38 +9,35 @@
   <hr>
   <br>
 
+<body>
+
   <div class="currencySelector"> <!--https://currencysystem.com/codes/-->
-    <input type="radio" name="currency" id="usd" value="usd" checked>
-    <label for="usd">US dollar</label>
+    <input type="radio" name="currency" id="usd" value="usd_div" onclick="updateCurrency();" checked>
+    <label for="usd">US Dollar</label>
 
-    <input type="radio" name="currency" id="eur" value="eur">
-    <label for="eur">Euro</label>
+    <input type="radio" name="currency" id="mmk" value="mmk_div" onclick="updateCurrency();">
+    <label for="mmk">Burmese Kyat</label>
 
-    <input type="radio" name="currency" id="nok" value="nok">
+    <input type="radio" name="currency" id="nok" value="nok_div" onclick="updateCurrency();">
     <label for="nok">Norwegian Krone</label>
 
-    <input type="radio" name="currency" id="try" value="try">
+    <input type="radio" name="currency" id="try" value="try_div" onclick="updateCurrency();">
     <label for="try">Turkish Lira</label>
 
-    <input type="radio" name="currency" id="kes" value="kes">
+    <input type="radio" name="currency" id="kes" value="kes_div" onclick="updateCurrency();">
     <label for="kes">Kenyan Shilling</label>
   </div>
 
-  <body>
-    <div id="container">
-      <canvas class="bankCanvas" id="scrollerCanvas" width="480" height="270"></canvas>
-    </div>
-    <button id="newMoney">New Money</button>
-    <button id="update">Update Tracker</button>
-    <p id="moneyMade"></p>
-    Salary:
+    <br>
+
+    I make this many of 'em:
   <!--
     <select id="salaryCurrency">
       <option value="usd">$</option>
       <option value="euro">€</option>
       <option value="cad">Can$</option>
     </select>
-    -->$
+  -->
     <input value="56,516" type="text" id="salary"/>
     per
     <select id = "salaryTime">
@@ -48,10 +45,47 @@
       <option value="hour">Hour</option>
     </select>
     <br>
-    Taxes: <input value="0" type="text" id="tax"/>%
+    Take out those taxes: <input value="0" type="text" id="tax"/>%
 
     <br>
-    Scrolling currency:
+    <br>
+    <div id="usd_div" class="noteSelector" style="float: left"> <!--https://currencysystem.com/codes/-->
+      <input type="radio" name="note" id="c1" value="c1" onclick="updateVals();" checked>
+      <label for="c1">1 Cent</label>
+      <br>
+      <input type="radio" name="note" id="c5" value="c5" onclick="updateVals();">
+      <label for="c5">5 Cents</label>
+      <br>
+      <input type="radio" name="note" id="c10" value="c10" onclick="updateVals();">
+      <label for="c10">10 Cents</label>
+      <br>
+      <input type="radio" name="note" id="c25" value="c25" onclick="updateVals();">
+      <label for="c25">25 Cents</label>
+      <br>
+      <input type="radio" name="note" id="d1" value="d1" onclick="updateVals();">
+      <label for="d1">1 Dollar</label>
+    </div>
+
+    <div id="nok_div" class="noteSelector" style="float: left"> <!--https://currencysystem.com/codes/-->
+      <input type="radio" name="note" id="k1" value="k1" onclick="updateVals();">
+      <label for="k1">1 Krone</label>
+      <br>
+      <input type="radio" name="note" id="k5" value="k5" onclick="updateVals();">
+      <label for="k5">5 Kroner</label>
+      <br>
+      <input type="radio" name="note" id="k10" value="k10" onclick="updateVals();">
+      <label for="k10">10 Kroner</label>
+      <br>
+      <input type="radio" name="note" id="k20" value="k20" onclick="updateVals();">
+      <label for="k20">20 Kroner</label>
+      <br>
+      <input type="radio" name="note" id="k50" value="k50" onclick="updateVals();">
+      <label for="k50">50 Kroner</label>
+    </div>
+
+
+
+<!--
     <select id="currency">
       <option selected="selected" value="cent">1 US Cents</option>
       <option value="5c_usd">5 US Cents</option>
@@ -62,7 +96,16 @@
       <option value="loonie">1 Loonie</option>
       <option value="toonie">1 Toonie</option>
     </select>
-    <br>
+    <br>-->
+
+
+    <div id="container">
+      <canvas class="bankCanvas" id="scrollerCanvas" width="480" height="270"></canvas>
+    </div>
+    <button id="newMoney">New Money</button>
+    <button id="update">Update Tracker</button>
+    <p id="moneyMade"></p>
+
 
 
 
