@@ -92,12 +92,6 @@ footer {
   padding: 4px 4px;
   font-size: 16px;
   color: white;
-  width: 100%;
-  height: 45px;
-  float: right;
-  margin: 1%;
-  display: flex;
-  justify-content: space-around;
 }
 
 /* format checked background */
