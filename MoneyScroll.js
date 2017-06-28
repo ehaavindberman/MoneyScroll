@@ -20,6 +20,12 @@ var currencyTable = {
     ,'k20': {'height': 125,'width': 125,'img': 'nok/20_nok.png','increase': 20}
     ,'k50': {'height': 150,'width': 300,'img': 'nok/50_nok.png','increase': 50}
     ,'k100': {'height': 150,'width': 305,'img': 'nok/100_nok.png','increase': 100}
+  },
+  'sni_div': {
+    'reg' : {'height':100,'width':170,'img':'sni/snickers.png','increase':.89},
+    'mini' : {'height':100,'width':100,'img':'sni/mini.png','increase':.1},
+    'xl' : {'height':120,'width':300,'img':'sni/snickers.png','increase':5},
+    'alm' : {'height':130,'width':190,'img':'sni/almond.png','increase':.89}
   }
 };
 
@@ -165,7 +171,7 @@ function drawAllMoneys() {
 
 // change the currency at a button push
 function updateCurrency() {
-  var currencies = ['usd_div','nok_div']; //'mmk','try','kes'
+  var currencies = ['usd_div','nok_div','sni_div']; //'mmk','try','kes'
   for (var i=0;i<currencies.length;i++) {
     var temp = document.getElementById(currencies[i]);
     temp.style.display = 'none';
