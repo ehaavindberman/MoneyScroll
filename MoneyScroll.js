@@ -1,10 +1,8 @@
 /*Javascript*/
 
-var velocity;
-var interval;
-var leftpos = [];
-var moneyPictures = [];
-var time = [];
+var moneyList = [];
+var userValues;
+var addNewInterval;
 var currencyTable = {
   'usd_div': {
     'c1': {'height': 75,'width': 75,'img': 'usd/1c_usd.png','increase': .01}
@@ -28,149 +26,126 @@ var currencyTable = {
     'alm' : {'height':130,'width':190,'img':'sni/almond.png','increase':.89}
   }
 };
+var backgroundTable = {
+  'wood' : {'image' : 'yes', 'value' : 'url(backgrounds//wood.png)'},
+  'bank' : {'image' : 'yes', 'value' : 'url(backgrounds//bank.png)'},
+  'white' : {'image' : 'no', 'value' : 'white'}
+}
+
+class scrollingMoney {
+  constructor(currencyVals,dist) {
+    this.vals = currencyVals;
+    this.x = -1*currencyVals.width;
+    this.start = new Date().getTime();
+    this.end = this.start + 4000;
+    this.newMoney = new Image();
+    this.newMoney.src = this.vals.img;
+  }
+}
+
+class windowVals {
+  constructor() {
+    this.selectedCurrency = document.querySelector('input[name = "currency"]:checked').value;
+    this.selectedNote = document.querySelector('input[name = "note"]:checked').value;
+    this.tax = document.getElementById('tax').value;
+    this.salaryTime = document.getElementById('salaryTime').value;
+    this.salary = document.getElementById('salary').value;
+    this.salary = this.salary.replace(/\,/g,'');
+    this.salary = parseInt(this.salary,10);
+  }
+}
 
 
 var canvas = document.getElementById('scrollerCanvas');
 var context = canvas.getContext('2d');
 var moneyCounter = 0;
-var moneyMadeDisp = "Money Made: $0.00";
-document.getElementById("moneyMade").innerHTML = moneyMadeDisp;
-document.getElementById("newMoney").onclick = function() {addNew()};
-document.getElementById("update").onclick = function() {updateVals()};
+var moneyMadeDisp = 'Money Made: $0.00';
+document.getElementById('moneyMade').innerHTML = moneyMadeDisp;
 
-updateCurrency();
-
+userChangedSomething();
+updateShownCurrency();
 // draw window
 context.beginPath();
 context.lineWidth = 1;
 context.strokeRect(0,0,canvas.width,canvas.height);
 
-updateVals();
+
+draw();
 
 
-
-
-function updateVals() {
-  // reset values
-  interval;
-  leftpos = [];
-  moneyPictures = [];
-  time = [];
-
-  // get values from user input
-  var selectedCurrency = document.querySelector('input[name = "currency"]:checked').value;
-  var selectedNote = document.querySelector('input[name = "note"]:checked').value;
-  var salary = document.getElementById('salary').value;
-  salary = salary.replace(/\,/g,'');
-  salary = parseInt(salary,10);
-
-  // set values based on selections
-  newMoney = new Image();
-
-  moneyIncrease = currencyTable[selectedCurrency][selectedNote].increase;
-  moneyHeight = currencyTable[selectedCurrency][selectedNote].height;
-  moneyWidth = currencyTable[selectedCurrency][selectedNote].width;
-  newMoney.src = currencyTable[selectedCurrency][selectedNote].img;
-  moneyY = canvas.height/2 - moneyHeight/2;
-
-  var tax = document.getElementById("tax").value;
-
-  var salaryTime = document.getElementById("salaryTime").value;
-  switch (salaryTime) {
-    case "year":
-      var timeDivider = 1 / 52 /40 / 60 / 60 / 1000;
+function userChangedSomething() {
+  userValues = new windowVals;
+  switch (userValues.salaryTime) {
+    case 'year':
+      var timeDivider = 1 / 52 / 40 / 60 / 60 / 1000;
     break;
 
-    case "hour":
+    case 'hour':
       var timeDivider = 1 / 60 / 60 / 1000;
     break;
   }
 
-  // calculate speed
-  salaryPerMili = moneyIncrease / (salary*timeDivider*((100-tax)/100));
+  var inc = currencyTable[userValues.selectedCurrency][userValues.selectedNote].increase;
 
-  if (salaryPerMili < 500) {
-    velocity = 1.84;
-  }
-  else {
-    velocity = .92;
-  }
+  // calculate number of miliseconds between new money
+  var salaryPerMili = 1 / (userValues.salary*(1-userValues.tax/100)*timeDivider*(1/inc));
 
-  // make sure the salary isn't too much to wreck the animation
-  if (salaryPerMili > 5) {
-    try {
-      clearInterval(salaryLoop);
-    }
-    finally{
-      salaryLoop = setInterval(addNew,salaryPerMili);
-    }
+  // add a new currency each time
+  console.log(salaryPerMili);
+  try {
+    clearInterval(addNewInterval);
   }
-  else {
-    try {
-      clearInterval(salaryLoop);
-      clearInterval(interval);
-    }
-    finally {
-      context.clearRect(0,0,canvas.width,canvas.height);
-      context.fillStyle = "#15ff00";
-      context.font = "bold 25px Arial";
-      context.textAlign="center";
-      context.fillText("You make too much money, go away"
-        , (canvas.width / 2), (canvas.height / 2)-10);
-      context.fillText("(or use a more valuable currency)"
-        , (canvas.width / 2), (canvas.height / 2)+10);
-
-    }
+  finally {
+    addNewInterval = setInterval(function(){addNew()},salaryPerMili);
   }
 }
 
 
 function addNew() {
-  leftpos.push(-moneyWidth);
-  try  {
-    clearInterval(interval);
-  }
-  finally {
-    interval = setInterval(redraw,1);
-  }
-  moneyPictures.push(newMoney);
-  var t = new Date().getTime();
-  time.push(t);
+  var currency = userValues.selectedCurrency;
+  var note = userValues.selectedNote;
+  moneyList.push(new scrollingMoney(currencyTable[currency][note],canvas.width))
 }
 
 
-function redraw() {
-  if (leftpos[0] > canvas.width) {
-    leftpos.splice(0,1);
-    time.splice(0,1);
-    moneyCounter += moneyIncrease;
-    var moneyMadeDisp = "Money Made: $"+moneyCounter.toFixed(2);
-    document.getElementById("moneyMade").innerHTML = moneyMadeDisp;
-  }
-  else {
-    context.clearRect(0,0,canvas.width,canvas.height);
-    drawAllMoneys();
-  }
-}
+function draw() {
 
-
-function drawAllMoneys() {
+  // clear and redraw canvas
+  context.clearRect(0,0,canvas.width,canvas.height);
   context.beginPath();
   context.lineWidth = 1;
   context.strokeRect(0,0,canvas.width,canvas.height);
 
-  for (var i=0; i<leftpos.length; i++) {
-    context.drawImage(moneyPictures[i]
-      ,leftpos[i]
-      ,moneyY
-      ,moneyWidth
-      ,moneyHeight);
-    leftpos[i] += velocity;
+  // draw all scrolling money at it's correct position
+  for (var i=moneyList.length-1; i>=0; --i) {
+    var now = new Date().getTime();
+    var pct = (moneyList[i].end - now) / (moneyList[i].end - moneyList[i].start);
+
+    // show money at it's correct point or take it out if it's done
+    if (pct > 0) {
+      var moneyX = moneyList[i].x + (canvas.width + 2*moneyList[i].vals.width) * (1-pct);
+      var moneyY = canvas.height/2 - moneyList[i].vals.height/2;
+
+      context.drawImage(moneyList[i].newMoney
+        , moneyX, moneyY
+        , moneyList[i].vals.width, moneyList[i].vals.height
+      );
+
+    }
+    // money is now off screen, so pop and increase counter
+    else {
+      // increase counter
+      moneyCounter += moneyList[i].vals.increase;
+      document.getElementById('moneyMade').innerHTML = 'Money Made: $'+moneyCounter.toFixed(2);
+      moneyList.splice(i,1);
+    }
   }
+  window.requestAnimationFrame(draw);
 }
 
-// change the currency at a button push
-function updateCurrency() {
+
+// change the shown currency at a button push
+function updateShownCurrency() {
   var currencies = ['usd_div','nok_div','sni_div']; //'mmk','try','kes'
   for (var i=0;i<currencies.length;i++) {
     var temp = document.getElementById(currencies[i]);
@@ -185,5 +160,37 @@ function updateCurrency() {
 // change background color to value selected
 function updateBackground() {
   var bg_val = document.querySelector('input[name = "bgsel"]:checked').value;
-  document.getElementById("scrollerCanvas").className = bg_val;
+  /*if (backgroundTable[bg_val].image == 'yes') {
+    /*var img = new Image();
+    img.src = backgroundTable[bg_val].value;
+    var patrn = context.createPattern(img,'no-repeat');
+    context.fillStyle = patrn;
+    context.fillRect(0,0, canvas.width, canvas.height);
+    //
+
+    var style = document.createElement('style');
+    style.type = 'text/css';
+    style.innerHTML = '.'+bg_val+' { border: 3px #CCC solid; background:'
+      +backgroundTable[bg_val].value+'; background-repeat: no-repeat; background-size: 100% 100%; }';
+    document.getElementsByTagName('head')[0].appendChild(style);
+    document.getElementById('scrollerCanvas').className = '.'+bg_val;
+
+    //document.getElementById("scrollerCanvas").style.backgroundRepeat = 'no-repeat';
+    //document.getElementById("scrollerCanvas").className = backgroundTable[bg_val].value;
+
+  }
+  else {
+    var style = document.createElement('style');
+    style.type = 'text/css';
+    style.innerHTML = '.'+bg_val+' { border: 3px #CCC solid; background:'
+      +backgroundTable[bg_val].value+'; }';
+    document.getElementsByTagName('head')[0].appendChild(style);
+    document.getElementById('scrollerCanvas').className = '.'+bg_val;
+
+
+    //document.getElementById("scrollerCanvas").style.background = backgroundTable[bg_val].value;
+  }
+  console.log(document.getElementById('scrollerCanvas').className)*/
+  document.getElementById('scrollerCanvas').className = bg_val;
+
 }
