@@ -12,83 +12,82 @@
 <body>
 
   <div class="currencySelector"> <!--https://currencysystem.com/codes/-->
-    <input type="radio" name="currency" id="usd" value="usd_div" onclick="updateCurrency();" checked>
+    <input type="radio" name="currency" id="usd" value="usd_div" onclick="updateShownCurrency();" checked>
     <label for="usd">US Dollar</label>
 
-    <input type="radio" name="currency" id="mmk" value="mmk_div" onclick="updateCurrency();">
-    <label for="mmk">Burmese Kyat</label>
+    <!-- <input type="radio" name="currency" id="mmk" value="mmk_div" onclick="updateShownCurrency();">
+    <label for="mmk">Burmese Kyat</label> -->
 
-    <input type="radio" name="currency" id="nok" value="nok_div" onclick="updateCurrency();">
+    <input type="radio" name="currency" id="nok" value="nok_div" onclick="updateShownCurrency();">
     <label for="nok">Norwegian Krone</label>
 
-    <input type="radio" name="currency" id="try" value="try_div" onclick="updateCurrency();">
+    <!-- <input type="radio" name="currency" id="try" value="try_div" onclick="updateShownCurrency();">
     <label for="try">Turkish Lira</label>
 
-    <input type="radio" name="currency" id="kes" value="kes_div" onclick="updateCurrency();">
-    <label for="kes">Kenyan Shilling</label>
+    <input type="radio" name="currency" id="kes" value="kes_div" onclick="updateShownCurrency();">
+    <label for="kes">Kenyan Shilling</label> -->
 
-    <input type="radio" name="currency" id="sni" value="sni_div" onclick="updateCurrency();">
+    <input type="radio" name="currency" id="sni" value="sni_div" onclick="updateShownCurrency();">
     <label for="sni">Snickers</label>
   </div>
+
   <br>
+
   <div id="usd_div" class="noteSelector"> <!--https://currencysystem.com/codes/-->
-    <input type="radio" name="note" id="c1" value="c1" onclick="updateVals();" checked>
+    <input type="radio" name="note" id="c1" value="c1" onclick="userChangedSomething();" checked>
     <label for="c1">1 Cent</label>
 
-    <input type="radio" name="note" id="c5" value="c5" onclick="updateVals();">
+    <input type="radio" name="note" id="c5" value="c5" onclick="userChangedSomething();">
     <label for="c5">5 Cents</label>
 
-    <input type="radio" name="note" id="c10" value="c10" onclick="updateVals();">
+    <input type="radio" name="note" id="c10" value="c10" onclick="userChangedSomething();">
     <label for="c10">10 Cents</label>
 
-    <input type="radio" name="note" id="c25" value="c25" onclick="updateVals();">
+    <input type="radio" name="note" id="c25" value="c25" onclick="userChangedSomething();">
     <label for="c25">25 Cents</label>
 
-    <input type="radio" name="note" id="d1" value="d1" onclick="updateVals();">
+    <input type="radio" name="note" id="d1" value="d1" onclick="userChangedSomething();">
     <label for="d1">1 Dollar</label>
   </div>
 
   <div id="nok_div" class="noteSelector"> <!--https://currencysystem.com/codes/-->
-    <input type="radio" name="note" id="k1" value="k1" onclick="updateVals();">
+    <input type="radio" name="note" id="k1" value="k1" onclick="userChangedSomething();">
     <label for="k1">1 Krone</label>
 
-    <input type="radio" name="note" id="k5" value="k5" onclick="updateVals();">
+    <input type="radio" name="note" id="k5" value="k5" onclick="userChangedSomething();">
     <label for="k5">5 Kroner</label>
 
-    <input type="radio" name="note" id="k10" value="k10" onclick="updateVals();">
+    <input type="radio" name="note" id="k10" value="k10" onclick="userChangedSomething();">
     <label for="k10">10 Kroner</label>
 
-    <input type="radio" name="note" id="k20" value="k20" onclick="updateVals();">
+    <input type="radio" name="note" id="k20" value="k20" onclick="userChangedSomething();">
     <label for="k20">20 Kroner</label>
 
-    <input type="radio" name="note" id="k50" value="k50" onclick="updateVals();">
+    <input type="radio" name="note" id="k50" value="k50" onclick="userChangedSomething();">
     <label for="k50">50 Kroner</label>
   </div>
 
   <div id="sni_div" class="noteSelector">
-    <input type="radio" name="note" id="mini" value="mini" onclick="updateVals();">
+    <input type="radio" name="note" id="mini" value="mini" onclick="userChangedSomething();">
     <label for="mini">Mini</label>
 
-    <input type="radio" name="note" id="reg" value="reg" onclick="updateVals();">
+    <input type="radio" name="note" id="reg" value="reg" onclick="userChangedSomething();">
     <label for="reg">Regular</label>
 
-    <input type="radio" name="note" id="xl" value="xl" onclick="updateVals();">
+    <input type="radio" name="note" id="xl" value="xl" onclick="userChangedSomething();">
     <label for="xl">King</label>
 
-    <input type="radio" name="note" id="alm" value="alm" onclick="updateVals();">
+    <input type="radio" name="note" id="alm" value="alm" onclick="userChangedSomething();">
     <label for="alm">Almond</label>
   </div>
 
   <br>
   <br>
+  <div id="container">
+    <canvas class="bankCanvas" id="scrollerCanvas" width="480" height="270"></canvas>
+  </div>
+  <br>
   I make this many of 'em:
-  <!--
-    <select id="salaryCurrency">
-      <option value="usd">$</option>
-      <option value="euro">€</option>
-      <option value="cad">Can$</option>
-    </select>
-  -->
   <input value="56,516" type="text" id="salary"/>
   per
   <select id = "salaryTime">
@@ -101,30 +100,8 @@
   <br>
   <br>
 
-
-
-<!--
-    <select id="currency">
-      <option selected="selected" value="cent">1 US Cents</option>
-      <option value="5c_usd">5 US Cents</option>
-      <option value="10c_usd">10 US Cents</option>
-      <option value="25c_usd">25 US Cents</option>
-      <option value="dollar">1 US Dollar</option>
-      <option value="euro">1 Euro</option>
-      <option value="loonie">1 Loonie</option>
-      <option value="toonie">1 Toonie</option>
-    </select>
-    <br>-->
-
-
-  <div id="container">
-    <canvas class="bankCanvas" id="scrollerCanvas" width="480" height="270"></canvas>
-  </div>
-  <button id="newMoney">New Money</button>
-  <button id="update">Update Tracker</button>
+  <button id="update" onclick="userChangedSomething();">Update Tracker</button>
   <p id="moneyMade"></p>
-
-
 
 
   Change background:
@@ -157,7 +134,7 @@
   <!--<img src="TestMoney.jpg" alt="Image Not Found" height="100">-->
 
 
-
+  <br>
   <footer>
     <hr>
     <p>
