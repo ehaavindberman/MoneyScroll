@@ -47,7 +47,7 @@ class windowVals {
   constructor() {
     this.selectedCurrency = document.querySelector('input[name = "currency"]:checked').value;
     this.selectedNote = document.querySelector('input[name = "note"]:checked').value;
-    this.tax = document.getElementById('tax').value;
+    //this.tax = document.getElementById('tax').value;
     this.salaryTime = document.getElementById('salaryTime').value;
     this.salary = document.getElementById('salary').value;
     this.salary = this.salary.replace(/\,/g,'');
@@ -88,7 +88,7 @@ function userChangedSomething() {
   var inc = currencyTable[userValues.selectedCurrency][userValues.selectedNote].increase;
 
   // calculate number of miliseconds between new money
-  var salaryPerMili = 1 / (userValues.salary*(1-userValues.tax/100)*timeDivider*(1/inc));
+  var salaryPerMili = 1 / (userValues.salary*timeDivider*(1/inc)); //*(1-userValues.tax/100)
 
   // add a new currency each time
   console.log(salaryPerMili);
