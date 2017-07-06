@@ -1,3 +1,80 @@
+/* GENERAL STUFF */
+body {
+  background-color: lightblue;
+  padding: 0px;
+  margin: auto;
+  text-align: center;
+}
+
+h1 {
+  color: navy;
+  margin-left: 20px;
+}
+
+footer {
+  text-align: left;
+  padding: 20px;
+}
+
+
+select {
+  border: 2px solid #d6a566;
+  font-size: 16px;
+  background-color: #dbbb92;
+  color: #ffffff;
+  padding: 2px;
+  font-weight: bold;
+}
+
+input[type='text'], textarea {
+  border: 2px solid #d6a566;
+  background-color: #dbbb92;
+  color: #ffffff;
+  padding: 3px;
+  font-size: 16px;
+  text-align: right;
+  font-weight: bold;
+}
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+}
+
+li {
+    float: left;
+    /*border-left: 1px solid #bbb;
+    border-right: 1px solid #bbb;*/
+}
+
+li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+/* Change the link color to #111 (black) on hover */
+li a:hover {
+    background-color: #111;
+}
+
+/* BUTTON CLASSES */
+button {
+  background-color: #ce1260;
+  color: #ffffff;
+  padding: 3px;
+  font-size: 16px;
+}
+button:hover {
+  background-color: #c45684;
+  /*box-shadow: 0 1px 10px #99928b;*/
+}
+
 /* BACKGROUND IMAGE CLASSES */
 .bankCanvas {
   border: 3px #CCC solid;
@@ -19,30 +96,11 @@
 }
 
 
-
-
-/* OTHER STUFF */
-body {
-  background-color: lightblue;
-  padding: 0px 20px 0px 20px;
-  margin: auto;
-  text-align: center;
-}
-
-h1 {
-  color: navy;
-  margin-left: 20px;
-}
-
-footer {
-  text-align: left;
-}
-
+/* RADIO BUTTON CLASSES */
 /* take out circle buttons */
-.currencySelector input[type="radio"] {
+.currencySelector input[type='radio'] {
   display: none;
 }
-
 /* format labels */
 .currencySelector label {
   display: inline-block;
@@ -51,18 +109,15 @@ footer {
   font-size: 16px;
   color: white;
 }
-
 /* format checked background */
-.currencySelector input[type="radio"]:checked+label {
+.currencySelector input[type='radio']:checked+label {
   background-color: #1a53ff;
 }
 
-
 /* take out circle buttons */
-.bgSelector input[type="radio"] {
+.bgSelector input[type='radio'] {
   display: none;
 }
-
 /* format labels */
 .bgSelector label {
   display: inline-block;
@@ -71,30 +126,24 @@ footer {
   font-size: 16px;
   color: white;
 }
-
 /* format checked background */
-.bgSelector input[type="radio"]:checked+label {
+.bgSelector input[type='radio']:checked+label {
   background-color: #1a53ff;
 }
 
-
-
-
 /* take out circle buttons */
-.noteSelector input[type="radio"] {
+.noteSelector input[type='radio'] {
   display: none;
 }
-
 /* format labels */
 .noteSelector label {
   display: inline-block;
   background-color: #4d7900;
-  padding: 4px 4px;
+  padding: 4px 4px 4px 4px;
   font-size: 16px;
   color: white;
 }
-
 /* format checked background */
-.noteSelector input[type="radio"]:checked+label {
+.noteSelector input[type='radio']:checked+label {
   background-color: #1a5300;
 }
