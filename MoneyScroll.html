@@ -1,12 +1,22 @@
 <!DOCTYPE HTML>
 <html>
-  <head>
-    <link rel="stylesheet" type="text/css" href="MoneyScroll.css">
-  </head>
+<head>
+  <link rel="stylesheet" type="text/css" href="MoneyScroll.css">
+
+  <ul>
+    <li><a href="MoneyScroll.html">Money Scroll</a></li>
+    <li style="float:right"><a href="home.html">Home</a></li>
+    <li><a href="test.html">Test</a></li>
+    <li><a href="TTTLoser.html">TTTLoser</a></li>
+    <li><a href="../ObamaSays/ObamaSays.html">Obama Says</a></li>
+  </ul>
 
   <title>Money Scroll</title>
-  <h1>Money Scroll - try it yourself!</h1>
-  <hr>
+  <h1>Money Scroll!</h1>
+  <hr style="margin-right:20px; margin-left:20px;">
+</head>
+
+
   <br>
 
 <body>
@@ -88,19 +98,17 @@
   </div>
   <br>
   I make this many of 'em:
-  <input value="56,516" type="text" id="salary"/>
+  <input type="text" value="56,516" id="salary" class="textInput" size=6/>
   per
   <select id = "salaryTime">
     <option selected="selected" value="year">Year</option>
     <option value="hour">Hour</option>
   </select>
-  <br>
-  Take out those taxes: <input value="0" type="text" id="tax"/>%
-
-  <br>
-  <br>
-
-  <button id="update" onclick="userChangedSomething();">Update Tracker</button>
+  <!-- <br>
+  Take out those taxes: <input value="0" type="text" id="tax"/>% -->
+  <button id="update" onclick="userChangedSomething();">
+    Update Tracker
+  </button>
   <p id="moneyMade"></p>
 
 
